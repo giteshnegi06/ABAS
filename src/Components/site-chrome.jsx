@@ -32,7 +32,7 @@ export function SiteNav({ transparentOnTop = false }) {
           : "bg-transparent text-cream"
       }`}
     >
-      <div className="mx-auto flex max-w-[1400px] items-center justify-between px-6 py-5 lg:px-10">
+      <div className="mx-auto flex max-w-8xl items-center justify-between px-6 py-5 lg:px-2 xl:px-20 ">
         <Link to="/" className="flex items-center gap-2.5">
           <span className="grid h-9 w-9 place-items-center rounded-full bg-saffron text-cream font-display text-lg">
             अ
@@ -54,12 +54,12 @@ export function SiteNav({ transparentOnTop = false }) {
         </nav>
 
         <div className="hidden items-center gap-3 lg:flex">
-          <button
+          {/* <button
             aria-label="Search"
             className="grid h-9 w-9 place-items-center rounded-full border border-current/30 transition hover:bg-current/10"
           >
             <Search className="h-4 w-4" />
-          </button>
+          </button> */}
           <SignInMenu />
           <Link
             to="/join"
@@ -110,7 +110,7 @@ export function SiteNav({ transparentOnTop = false }) {
             <Link
               to="/join"
               onClick={() => setOpen(false)}
-              className="mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-saffron px-5 py-3 text-sm font-medium text-cream"
+              className="mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-saffron px-5 py-3 text-xs xl:text-sm font-medium text-cream"
             >
               <Heart className="h-4 w-4" /> Join us
             </Link>
@@ -133,7 +133,7 @@ function SignInMenu() {
     <div className="relative" onClick={(e) => e.stopPropagation()}>
       <button
         onClick={() => setOpen((v) => !v)}
-        className="inline-flex items-center gap-2 rounded-full border border-current/30 px-4 py-2 text-sm font-medium transition hover:bg-current/10"
+        className="inline-flex items-center gap-2 rounded-full border border-current/30 px-4 py-2 text-xs xl:text-sm font-medium transition hover:bg-current/10"
       >
         <LogIn className="h-4 w-4" /> Sign in <ChevronDown className="h-3 w-3" />
       </button>
@@ -172,7 +172,7 @@ function SignInMenu() {
 export function SiteFooter() {
   return (
     <footer className="border-t border-border bg-cream py-20">
-      <div className="mx-auto grid max-w-[1400px] gap-12 px-6 lg:grid-cols-12 lg:px-10">
+      <div className="mx-auto grid max-w-350 gap-12 px-6 lg:grid-cols-12 lg:px-10">
         <div className="lg:col-span-5">
           <Link to="/" className="flex items-center gap-2.5">
             <span className="grid h-10 w-10 place-items-center rounded-full bg-saffron text-cream font-display text-lg">

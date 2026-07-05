@@ -30,11 +30,11 @@ function AboutPage() {
       />
 
       <section className="py-24 lg:py-32">
-        <div className="mx-auto grid max-w-[1400px] gap-16 px-6 lg:grid-cols-12 lg:gap-20 lg:px-10">
+        <div className="mx-auto grid max-w-350 gap-16 px-6 lg:grid-cols-12 lg:gap-20 lg:px-10">
           <div className="lg:col-span-5">
-            <div className="relative aspect-[4/5] overflow-hidden rounded-sm bg-secondary">
+            <div className="relative aspect-4/5 overflow-hidden rounded-sm bg-secondary">
               <img src={agrasenImg} alt="Maharaja Agrasen" loading="lazy" className="h-full w-full object-cover" />
-              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink/80 to-transparent p-6 text-cream">
+              <div className="absolute inset-x-0 bottom-0 bg-linear-to-t from-ink/80 to-transparent p-6 text-cream">
                 <p className="script-accent text-2xl">since 1976</p>
                 <p className="font-display text-3xl">Maharaja Agrasen</p>
                 <p className="text-xs opacity-80">Symbol of unity, equality & seva</p>

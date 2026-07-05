@@ -1,7 +1,8 @@
+import { useState } from "react";
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import {
   Activity, Bell, CalendarDays, CreditCard, Download, Gift, IdCard, LayoutDashboard,
-  LogOut, QrCode, Search, Settings, User, Users,
+  LogOut, QrCode, Search, Settings, User, Users, Menu, X,
 } from "lucide-react";
 
 export const Route = createFileRoute("/portal")({
@@ -40,18 +41,53 @@ const notifications = [
 
 export default function PortalPage() {
   const navigate = useNavigate();
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   return (
-    <div className="min-h-screen bg-secondary/30 text-foreground">
-      <div className="mx-auto flex max-w-8xl">
+    <div className="min-h-screen bg-secondary/30 text-foreground flex flex-col lg:flex-row">
+      {/* Mobile Header */}
+      <div className="flex items-center justify-between border-b border-border bg-background px-6 py-4 lg:hidden sticky top-0 z-40 w-full shrink-0">
+        <Link to="/" className="flex items-center gap-2.5">
+          <span className="grid h-8 w-8 place-items-center rounded-full bg-saffron text-cream font-display text-base">अ</span>
+          <span className="font-display text-sm text-foreground">ABAS Portal</span>
+        </Link>
+        <button
+          onClick={() => setSidebarOpen(true)}
+          className="grid h-9 w-9 place-items-center rounded-md border border-border text-foreground cursor-pointer"
+        >
+          <Menu className="h-5 w-5" />
+        </button>
+      </div>
+
+      <div className="mx-auto flex max-w-8xl w-full flex-1 flex-col lg:flex-row">
+        {/* Sidebar Backdrop (Mobile only) */}
+        {sidebarOpen && (
+          <div
+            className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm lg:hidden cursor-pointer"
+            onClick={() => setSidebarOpen(false)}
+          />
+        )}
+
         {/* Sidebar */}
-        <aside className="sticky top-0 hidden h-screen w-64 shrink-0 flex-col border-r border-border bg-background lg:flex">
-          <Link to="/" className="flex items-center gap-2.5 border-b border-border px-6 py-5">
-            <span className="grid h-9 w-9 place-items-center rounded-full bg-saffron text-cream font-display text-lg">अ</span>
-            <div>
-              <div className="font-display text-base leading-none">ABAS</div>
-              <div className="text-[10px] uppercase tracking-widest text-muted-foreground">Member Portal</div>
-            </div>
-          </Link>
+        <aside
+          className={`fixed inset-y-0 left-0 z-50 flex w-64 flex-col border-r border-border bg-background transition-transform duration-300 lg:sticky lg:top-0 lg:h-screen lg:translate-x-0 ${
+            sidebarOpen ? "translate-x-0" : "-translate-x-full"
+          } lg:flex shrink-0`}
+        >
+          <div className="flex items-center justify-between border-b border-border px-6 py-5">
+            <Link to="/" className="flex items-center gap-2.5">
+              <span className="grid h-9 w-9 place-items-center rounded-full bg-saffron text-cream font-display text-lg">अ</span>
+              <div>
+                <div className="font-display text-base leading-none text-foreground">ABAS</div>
+                <div className="text-[10px] uppercase tracking-widest text-muted-foreground">Member Portal</div>
+              </div>
+            </Link>
+            <button
+              onClick={() => setSidebarOpen(false)}
+              className="grid h-8 w-8 place-items-center rounded-full border border-border text-foreground lg:hidden cursor-pointer"
+            >
+              <X className="h-4 w-4" />
+            </button>
+          </div>
 
           <nav className="flex-1 overflow-y-auto p-3">
             {nav.map((n) => {
@@ -59,7 +95,7 @@ export default function PortalPage() {
               return (
                 <button
                   key={n.label}
-                  className={`flex w-full items-center gap-3 rounded-md px-3 py-2.5 text-left text-sm transition ${
+                  className={`flex w-full items-center gap-3 rounded-md px-3 py-2.5 text-left text-sm transition cursor-pointer ${
                     n.active ? "bg-saffron/10 text-saffron font-medium" : "text-muted-foreground hover:bg-secondary hover:text-foreground"
                   }`}
                 >
@@ -71,14 +107,14 @@ export default function PortalPage() {
 
           <button
             onClick={() => navigate({ to: "/" })}
-            className="flex items-center gap-3 border-t border-border px-6 py-4 text-sm text-muted-foreground hover:text-foreground"
+            className="flex items-center gap-3 border-t border-border px-6 py-4 text-sm text-muted-foreground hover:text-foreground cursor-pointer"
           >
             <LogOut className="h-4 w-4" /> Sign out
           </button>
         </aside>
 
         {/* Main */}
-        <main className="flex-1 px-6 py-8 lg:px-10 lg:py-10">
+        <main className="flex-1 px-6 py-8 lg:px-10 lg:py-10 min-w-0">
           {/* Top bar */}
           <div className="mb-8 flex items-center justify-between">
             <div>
@@ -92,7 +128,7 @@ export default function PortalPage() {
                 <Bell className="h-4 w-4" />
                 <span className="absolute right-2 top-2 h-2 w-2 rounded-full bg-saffron" />
               </button>
-              <div className="flex items-center gap-3 rounded-full border border-border bg-background pl-1 pr-4 py-1">
+              <div className="flex items-center gap-3 rounded-full border border-border bg-background pl-1 pr-1 md:pr-4 py-1">
                 <span className="grid h-8 w-8 place-items-center rounded-full bg-ink text-cream text-sm font-medium">RA</span>
                 <div className="hidden text-left sm:block">
                   <div className="text-sm font-medium leading-tight">Rahul Agrawal</div>
