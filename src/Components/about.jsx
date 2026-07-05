@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { ArrowUpRight } from "lucide-react";
-import agrasenImg from "../assets/agrasen.jpg";
+import agrasenImg from "../assets/maharaja-agrasen.jpg";
 import { PageHero, SiteFooter, SiteNav } from "./site-chrome";
 
 const values = [
@@ -36,7 +36,7 @@ function AboutPage() {
               <img src={agrasenImg} alt="Maharaja Agrasen" loading="lazy" className="h-full w-full object-cover" />
               <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink/80 to-transparent p-6 text-cream">
                 <p className="script-accent text-2xl">since 1976</p>
-                <p className="font-display text-xl">Maharaja Agrasen</p>
+                <p className="font-display text-3xl">Maharaja Agrasen</p>
                 <p className="text-xs opacity-80">Symbol of unity, equality & seva</p>
               </div>
             </div>
