@@ -32,7 +32,7 @@ export function SiteNav({ transparentOnTop = false }) {
           : "bg-transparent text-cream"
       }`}
     >
-      <div className="mx-auto flex max-w-8xl items-center justify-between px-6 py-5 lg:px-2 xl:px-20 ">
+      <div className="mx-auto flex max-w-8xl items-center justify-between px-6 py-5 lg:px-2 xl:px-10 ">
         <Link to="/" className="flex items-center gap-2.5">
           <span className="grid h-9 w-9 place-items-center rounded-full bg-saffron text-cream font-display text-lg">
             अ
