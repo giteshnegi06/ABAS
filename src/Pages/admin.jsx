@@ -144,7 +144,7 @@ export default function AdminPage() {
             {/* Pending approvals */}
             <div className="lg:col-span-2">
               <AdminSection title="Pending member approvals" action="Review all" />
-              <div className="overflow-hidden rounded-lg border border-cream/10 bg-cream/[0.03]">
+              <div className="overflow-hidden rounded-lg border border-cream/10 bg-cream/3">
                 {pending.map((p, i) => (
                   <div key={i} className={`grid grid-cols-12 items-center gap-4 p-4 ${i > 0 ? "border-t border-cream/10" : ""}`}>
                     <div className="col-span-4 flex items-center gap-3">
@@ -180,7 +180,7 @@ export default function AdminPage() {
               <AdminSection title="Modules" />
               <div className="grid gap-2">
                 {["User Management", "Team Hierarchy", "Meeting Management", "Finance", "CMS", "Reports"].map((m) => (
-                  <button key={m} className="flex items-center justify-between rounded-lg border border-cream/10 bg-cream/[0.03] px-4 py-3 text-sm hover:bg-cream/10">
+                  <button key={m} className="flex items-center justify-between rounded-lg border border-cream/10 bg-cream/3 px-4 py-3 text-sm hover:bg-cream/10">
                     {m} <ChevronRight className="h-4 w-4 opacity-60" />
                   </button>
                 ))}
@@ -190,7 +190,7 @@ export default function AdminPage() {
             {/* Payments */}
             <div className="lg:col-span-3">
               <AdminSection title="Recent transactions" action="Open ledger" />
-              <div className="overflow-hidden rounded-lg border border-cream/10 bg-cream/[0.03]">
+              <div className="overflow-hidden rounded-lg border border-cream/10 bg-cream/3">
                 <div className="grid grid-cols-12 gap-4 border-b border-cream/10 px-5 py-3 text-[10px] uppercase tracking-widest opacity-60">
                   <div className="col-span-2">Invoice</div>
                   <div className="col-span-3">Member</div>
@@ -225,7 +225,7 @@ export default function AdminPage() {
 function AdminStat({ label, value, delta, icon: Icon, tone }) {
   const color = tone === "saffron" ? "text-saffron" : tone === "gold" ? "text-gold" : "text-cream";
   return (
-    <div className="rounded-lg border border-cream/10 bg-cream/[0.03] p-5">
+    <div className="rounded-lg border border-cream/10 bg-cream/3 p-5">
       <div className="flex items-start justify-between">
         <div>
           <div className="text-xs uppercase tracking-widest opacity-60">{label}</div>
@@ -392,7 +392,7 @@ export default function AdminPage() {
             {/* Pending approvals */}
             <div className="lg:col-span-2">
               <AdminSection title="Pending member approvals" action="Review all" />
-              <div className="overflow-hidden rounded-lg border border-cream/10 bg-cream/[0.03]">
+              <div className="overflow-hidden rounded-lg border border-cream/10 bg-cream/3">
                 {pending.map((p, i) => (
                   <div key={i} className={`grid grid-cols-12 items-center gap-4 p-4 ${i > 0 ? "border-t border-cream/10" : ""}`}>
                     <div className="col-span-4 flex items-center gap-3">
@@ -428,7 +428,7 @@ export default function AdminPage() {
               <AdminSection title="Modules" />
               <div className="grid gap-2">
                 {["User Management", "Team Hierarchy", "Meeting Management", "Finance", "CMS", "Reports"].map((m) => (
-                  <button key={m} className="flex items-center justify-between rounded-lg border border-cream/10 bg-cream/[0.03] px-4 py-3 text-sm hover:bg-cream/10">
+                  <button key={m} className="flex items-center justify-between rounded-lg border border-cream/10 bg-cream/3 px-4 py-3 text-sm hover:bg-cream/10">
                     {m} <ChevronRight className="h-4 w-4 opacity-60" />
                   </button>
                 ))}
@@ -438,7 +438,7 @@ export default function AdminPage() {
             {/* Payments */}
             <div className="lg:col-span-3">
               <AdminSection title="Recent transactions" action="Open ledger" />
-              <div className="overflow-hidden rounded-lg border border-cream/10 bg-cream/[0.03]">
+              <div className="overflow-hidden rounded-lg border border-cream/10 bg-cream/3">
                 <div className="grid grid-cols-12 gap-4 border-b border-cream/10 px-5 py-3 text-[10px] uppercase tracking-widest opacity-60">
                   <div className="col-span-2">Invoice</div>
                   <div className="col-span-3">Member</div>
@@ -473,7 +473,7 @@ export default function AdminPage() {
 function AdminStat({ label, value, delta, icon: Icon, tone }) {
   const color = tone === "saffron" ? "text-saffron" : tone === "gold" ? "text-gold" : "text-cream";
   return (
-    <div className="rounded-lg border border-cream/10 bg-cream/[0.03] p-5">
+    <div className="rounded-lg border border-cream/10 bg-cream/3 p-5">
       <div className="flex items-start justify-between">
         <div>
           <div className="text-xs uppercase tracking-widest opacity-60">{label}</div>
