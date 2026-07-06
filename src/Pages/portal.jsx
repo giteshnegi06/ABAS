@@ -164,7 +164,7 @@ export default function PortalPage() {
                 <span className="absolute right-2 top-2 h-2 w-2 rounded-full bg-saffron" />
               </button>
               <div className="flex items-center gap-3 rounded-full border border-border bg-background pl-1 pr-1 md:pr-4 py-1">
-                <span className="grid h-8 w-8 place-items-center rounded-full bg-ink text-cream text-sm font-medium">RA</span>
+                <span className="grid h-8 w-8 place-items-center rounded-full bg-ink text-cream text-sm font-medium"><img src={avatarImg} alt="Rahul Agrawal" className="rounded-full" /></span>
                 <div className="hidden text-left sm:block">
                   <div className="text-sm font-medium leading-tight">Rahul Agrawal</div>
                   <div className="text-[10px] uppercase tracking-widest text-muted-foreground">Life member</div>
@@ -234,7 +234,7 @@ function ProfileSection() {
     <div className="grid gap-6 lg:grid-cols-3">
       <div className="rounded-lg border border-border bg-background p-6 lg:col-span-1">
         <div className="flex flex-col items-center text-center">
-          <span className="grid h-24 w-24 place-items-center rounded-full bg-ink text-cream font-display text-3xl">RA</span>
+          <span className="grid h-24 w-24 place-items-center rounded-full bg-ink text-cream font-display text-3xl"><img src={avatarImg} alt="Rahul Agrawal" className="rounded-full" /></span>
           <div className="mt-4 font-display text-2xl">Rahul Agrawal</div>
           <div className="text-xs text-muted-foreground">ABAS-482910 · Life member</div>
           <button className="mt-4 rounded-full border border-border px-4 py-1.5 text-xs uppercase tracking-widest hover:bg-secondary">
@@ -589,9 +589,9 @@ function IdCardView() {
       {/* Header */}
       <div className="relative flex items-center justify-center gap-3 border-b border-cream/10 pb-3 w-full">
         <span className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-saffron text-cream font-display text-xl">अ</span>
-        <div className="flex flex-col text-left">
+        <div className="flex flex-col text-center">
           <span className="text-lg font-display leading-none tracking-wider">ABAS India</span>
-          <span className="text-[9px] uppercase tracking-widest text-saffron mt-1">Member ID Card</span>
+          <span className="text-[10px] uppercase tracking-widest text-saffron mt-1">Member ID Card</span>
         </div>
       </div>
 
