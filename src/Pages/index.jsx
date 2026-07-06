@@ -318,7 +318,7 @@ function CallToAction() {
           Become part of a <span className="script-accent">movement</span> that has served samaj for five decades.
         </h2>
         <div className="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row">
-          <Link to="/contact" className="inline-flex items-center gap-3 rounded-full bg-saffron px-8 py-4 text-sm font-medium uppercase tracking-widest text-cream transition hover:bg-gold">
+          <Link to="/join" className="inline-flex items-center gap-3 rounded-full bg-saffron px-8 py-4 text-sm font-medium uppercase tracking-widest text-cream transition hover:bg-gold">
             Membership application <ArrowRight className="h-4 w-4" />
           </Link>
           <Link to="/contact" className="inline-flex items-center gap-3 rounded-full border border-cream/40 px-8 py-4 text-sm font-medium uppercase tracking-widest transition hover:bg-cream/10">

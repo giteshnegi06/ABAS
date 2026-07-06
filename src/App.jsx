@@ -10,7 +10,6 @@ import TeamsPage from "./Components/teams";
 
 // New page imports
 import MemberPortal from "./Pages/portal";
-import InteractiveFlows from "./Pages/InteractiveFlows";
 import AdminPanel from "./Pages/admin";
 import AuthPage from "./Components/auth";
 import JoinPage from "./Components/join";
@@ -154,6 +153,21 @@ export function useAppState() {
 function MemberPortalWrapper() {
   const state = useAppState();
   return <MemberPortal {...state} />;
+}
+
+function InteractiveFlows({ onNavigateToPortal }) {
+  return (
+    <div className="p-8 text-center bg-background text-foreground min-h-screen flex flex-col items-center justify-center">
+      <h1 className="text-3xl font-bold mb-4 font-display">Interactive Flows</h1>
+      <p className="mb-6 opacity-80">This section is currently under development.</p>
+      <button 
+        onClick={onNavigateToPortal} 
+        className="rounded-full bg-saffron text-cream px-6 py-2.5 uppercase tracking-widest font-medium text-xs hover:bg-gold cursor-pointer"
+      >
+        Go to Member Portal
+      </button>
+    </div>
+  );
 }
 
 function InteractiveFlowsWrapper() {

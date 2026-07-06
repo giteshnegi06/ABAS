@@ -26,7 +26,7 @@ export function SiteNav({ transparentOnTop = false }) {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
+      className={`fixed inset-x-0 top-0 z-50 transition-all duration-800 ${
         solid
           ? "bg-background/85 backdrop-blur-md border-b border-border text-foreground"
           : "bg-transparent text-cream"
