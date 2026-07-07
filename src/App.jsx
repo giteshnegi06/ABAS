@@ -1,4 +1,5 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
+import LoadingScreen from "./Components/LoadingScreen";
 import { createRootRoute, createRoute, createRouter, RouterProvider, Outlet, useNavigate } from '@tanstack/react-router';
 import Landing from "./Pages/index";
 import AboutPage from "./Components/about";
@@ -15,13 +16,13 @@ import AuthPage from "./Components/auth";
 import JoinPage from "./Components/join";
 
 // Initial data import
-import { 
-  initialMembers, 
-  initialMeetings, 
-  initialPayments, 
-  initialDonations, 
-  initialDepartments, 
-  initialActivityLogs 
+import {
+  initialMembers,
+  initialMeetings,
+  initialPayments,
+  initialDonations,
+  initialDepartments,
+  initialActivityLogs
 } from "./Data/initialData";
 
 // Global App State Context
@@ -34,7 +35,7 @@ export function AppStateProvider({ children }) {
   const [donations, setDonations] = useState(initialDonations);
   const [departments, setDepartments] = useState(initialDepartments);
   const [activityLogs, setActivityLogs] = useState(initialActivityLogs);
-  
+
   const [loggedInMember, setLoggedInMember] = useState(null);
   const [isAdminLoggedIn, setIsAdminLoggedIn] = useState(false);
 
@@ -149,6 +150,12 @@ export function useAppState() {
   return useContext(AppStateContext);
 }
 
+// ── Page visibility context ───────────────────────────────────────────────────
+// Tells the landing page when it has become actually visible to the user
+// (i.e. after the loading overlay starts fading away).
+export const PageVisibleContext = createContext(false);
+export function usePageVisible() { return useContext(PageVisibleContext); }
+
 // Wrapper components for passing state to routes
 function MemberPortalWrapper() {
   const state = useAppState();
@@ -160,8 +167,8 @@ function InteractiveFlows({ onNavigateToPortal }) {
     <div className="p-8 text-center bg-background text-foreground min-h-screen flex flex-col items-center justify-center">
       <h1 className="text-3xl font-bold mb-4 font-display">Interactive Flows</h1>
       <p className="mb-6 opacity-80">This section is currently under development.</p>
-      <button 
-        onClick={onNavigateToPortal} 
+      <button
+        onClick={onNavigateToPortal}
         className="rounded-full bg-saffron text-cream px-6 py-2.5 uppercase tracking-widest font-medium text-xs hover:bg-gold cursor-pointer"
       >
         Go to Member Portal
@@ -174,9 +181,9 @@ function InteractiveFlowsWrapper() {
   const state = useAppState();
   const navigate = useNavigate();
   return (
-    <InteractiveFlows 
-      {...state} 
-      onNavigateToPortal={() => navigate({ to: '/portal' })} 
+    <InteractiveFlows
+      {...state}
+      onNavigateToPortal={() => navigate({ to: '/portal' })}
     />
   );
 }
@@ -280,10 +287,59 @@ const routeTree = rootRoute.addChildren([
 
 const router = createRouter({ routeTree });
 
+// How long the overlay takes to fade out once onDone fires.
+// Should be >= SCREEN_EXIT_MS in LoadingScreen.jsx (currently 600ms).
+const OVERLAY_FADE_MS = 700;
+
+// Module-level flag — survives React StrictMode double-mounts and hot reloads.
+// Once the loading screen has played, we never show it again for this session.
+let _loadingComplete = false;
+
 function App() {
+  // Initialise directly from the module flag so re-mounts skip the loading screen.
+  const [stage, setStage] = useState(() => (_loadingComplete ? "done" : "over"));
+
+  // Stable reference — useCallback prevents a new function on every render,
+  // which would otherwise re-trigger the exit effect in LoadingScreen.
+  const handleLoadingDone = useCallback(() => {
+    _loadingComplete = true;
+    setStage("fading");
+    setTimeout(() => setStage("done"), OVERLAY_FADE_MS);
+  }, []); // no deps — setStage is stable, _loadingComplete is module-level
+
+  // pageVisible = true the moment the overlay starts clearing
+  const pageVisible = stage !== "over";
+
   return (
     <AppStateProvider>
-      <RouterProvider router={router} />
+      <PageVisibleContext.Provider value={pageVisible}>
+        {/* ── Index page: ALWAYS in the DOM, sits underneath the overlay ── */}
+        <div
+          style={{
+            opacity: stage === "over" ? 0 : 1,
+            transition:
+              stage === "fading"
+                ? `opacity ${OVERLAY_FADE_MS}ms cubic-bezier(0.16, 1, 0.3, 1)`
+                : "none",
+          }}
+        >
+          <RouterProvider router={router} />
+        </div>
+
+        {/* ── Loading overlay: fixed, sits above everything ── */}
+        {stage !== "done" && (
+          <div
+            style={{
+              position: "fixed",
+              inset: 0,
+              zIndex: 9999,
+              pointerEvents: stage === "fading" ? "none" : "auto",
+            }}
+          >
+            <LoadingScreen onDone={handleLoadingDone} />
+          </div>
+        )}
+      </PageVisibleContext.Provider>
     </AppStateProvider>
   );
 }

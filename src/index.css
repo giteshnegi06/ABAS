@@ -139,3 +139,33 @@
 @utility marquee {
   animation: marquee 40s linear infinite;
 }
+
+/* ── Loading → Landing transition ────────────────────────────── */
+@keyframes loadingScreenExit {
+  0%   { opacity: 1; transform: scale(1) translateY(0); }
+  100% { opacity: 0; transform: scale(1.04) translateY(-18px); }
+}
+
+@keyframes landingFadeIn {
+  0%   { opacity: 0; transform: scale(0.98) translateY(14px); }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+@utility landing-fade-in {
+  animation: landingFadeIn 0.75s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* ── Hero entrance animations (triggered after loading overlay clears) ── */
+/* These are the same as .reveal / .fade but with a delay so they        */
+/* begin AFTER the cross-fade overlay finishes (~700ms)                   */
+@keyframes hero-slide-up {
+  0%   { opacity: 0; transform: translateY(32px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@utility hero-reveal {
+  animation: hero-slide-up 1s cubic-bezier(0.16, 1, 0.3, 1) 0.25s both;
+}
+@utility hero-fade {
+  animation: fade-in 1.2s ease-out 0.1s both;
+}

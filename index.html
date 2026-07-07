@@ -4,7 +4,20 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>abas</title>
+    <title>ABAS — Akhil Bharatiya Agrawal Sammelan</title>
+    <!--
+      CRITICAL: This inline style prevents the white flash before React loads.
+      It matches the LoadingScreen bg-ink color exactly.
+      Do NOT move this to index.css — it must be inline to apply before JS parses.
+    -->
+    <style>
+      html, body, #root {
+        background-color: #1c150a;
+        margin: 0;
+        padding: 0;
+        min-height: 100%;
+      }
+    </style>
   </head>
   <body>
     <div id="root"></div>

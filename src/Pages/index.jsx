@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
+import { usePageVisible } from "../App";
 
 import heroImg from "../assets/hero-abas.jpg";
 import { SiteNav, SiteFooter } from "../Components/site-chrome";
@@ -45,6 +46,10 @@ function Landing() {
 }
 
 function Hero() {
+  const visible = usePageVisible();
+  // Paused until the overlay starts fading; then all animations play in stagger.
+  const play = visible ? "running" : "paused";
+
   return (
     <section className="relative h-screen min-h-[720px] w-full overflow-hidden bg-ink text-cream">
       <div className="absolute inset-0">
@@ -54,16 +59,25 @@ function Hero() {
           width={1920}
           height={1280}
           className="ken-burns h-full w-full object-cover opacity-80"
+          style={{ animationPlayState: play }}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-ink/40 via-ink/20 to-ink/85" />
       </div>
 
       <div className="relative z-10 mx-auto flex h-full max-w-[1400px] flex-col justify-end px-6 pb-24 lg:px-10 lg:pb-32">
-        <p className="fade mb-6 flex items-center gap-3 text-xs uppercase tracking-[0.3em] opacity-90">
+        {/* Eyebrow — fades in first, slight delay */}
+        <p
+          className="hero-fade mb-6 flex items-center gap-3 text-xs uppercase tracking-[0.3em] opacity-90"
+          style={{ animationPlayState: play }}
+        >
           <span className="h-px w-8 bg-gold" /> Akhil Bharatiya Agrawal Sammelan
         </p>
 
-        <h1 className="reveal font-display text-5xl leading-[1.05] tracking-tight sm:text-6xl md:text-7xl lg:text-[92px]">
+        {/* Headline — slides up with a slightly longer duration */}
+        <h1
+          className="hero-reveal font-display text-5xl leading-[1.05] tracking-tight sm:text-6xl md:text-7xl lg:text-[92px]"
+          style={{ animationPlayState: play }}
+        >
           One community.<br />
           One mission.<br />
           <span className="relative inline-block">
@@ -76,7 +90,11 @@ function Hero() {
         </h1>
 
         <div className="mt-12 flex max-w-2xl flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
-          <p className="fade text-base leading-relaxed opacity-85 sm:text-lg">
+          {/* Body copy — fades in last */}
+          <p
+            className="hero-fade text-base leading-relaxed opacity-85 sm:text-lg"
+            style={{ animationDelay: "0.35s", animationPlayState: play }}
+          >
             From Maharaja Agrasen's vision of shared prosperity to today's Bharat — we bring the
             Agrawal community together for education, health, environment and livelihood.
           </p>
