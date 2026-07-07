@@ -13,7 +13,7 @@ export default function AuthPage() {
 
   const isAdmin = role === "admin";
   const accent = isAdmin ? "bg-ink text-cream" : "bg-saffron text-cream";
-  const target = isAdmin ? "/admin" : "/portal";
+  const target = isAdmin ? "#" : "/";
 
   return (
     <div className="min-h-screen bg-background text-foreground">
