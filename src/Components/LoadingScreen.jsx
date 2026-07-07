@@ -246,10 +246,10 @@ export default function LoadingScreen({ onDone }) {
 
       {/* Corner marks */}
       <div className="absolute top-7 left-7 text-[10px] tracking-[0.15em] text-[#8B8B8B] font-mono">
-        IN &middot; {total} languages
+        ABAS IN &middot; {total} languages
       </div>
       <div className="absolute bottom-7 right-7 text-[10px] tracking-[0.15em] text-[#8B8B8B] font-mono text-right">
-        preparing your<br />experience
+        Ek Parivar, Ek Mission<br />Ek Bharat, Shreshtha Bharat
       </div>
     </div>
   );
