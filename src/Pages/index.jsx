@@ -51,7 +51,7 @@ function Hero() {
   const play = visible ? "running" : "paused";
 
   return (
-    <section className="relative h-screen min-h-[720px] w-full overflow-hidden bg-ink text-cream">
+    <section className="relative h-screen min-h-180 w-full overflow-hidden bg-ink text-cream">
       <div className="absolute inset-0">
         <img
           src={heroImg}
@@ -61,10 +61,10 @@ function Hero() {
           className="ken-burns h-full w-full object-cover opacity-80"
           style={{ animationPlayState: play }}
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-ink/40 via-ink/20 to-ink/85" />
+        <div className="absolute inset-0 bg-linear-to-b from-ink/40 via-ink/20 to-ink/85" />
       </div>
 
-      <div className="relative z-10 mx-auto flex h-full max-w-[1400px] flex-col justify-end px-6 pb-24 lg:px-10 lg:pb-32">
+      <div className="relative z-10 mx-auto flex h-full max-w-350 flex-col justify-end px-6 pb-24 lg:px-10 lg:pb-32">
         {/* Eyebrow — fades in first, slight delay */}
         <p
           className="hero-fade mb-6 flex items-center gap-3 text-xs uppercase tracking-[0.3em] opacity-90"
@@ -84,7 +84,7 @@ function Hero() {
             <span>Serving </span>
             <span className="script-accent text-6xl md:text-7xl lg:text-[96px]">samaj.</span>
             <svg viewBox="0 0 600 120" className="pointer-events-none absolute -bottom-6 left-0 h-16 w-full text-gold" fill="none">
-              <path d="M20 80 C 160 20, 340 20, 580 70" stroke="currentColor" strokeWidth="3" strokeLinecap="round" className="draw-stroke" />
+              <path d="M20 80 C 160 20, 340 20, 580 70" stroke="currentColor" strokeWidth="3" strokeLinecap="round" className="draw-stroke" style={{ animationPlayState: play }} />
             </svg>
           </span>
         </h1>
@@ -159,7 +159,7 @@ function AboutPreview() {
   const { ref, shown } = useReveal();
   return (
     <section className="relative py-28 lg:py-36">
-      <div className="mx-auto max-w-[1400px] px-6 lg:px-10">
+      <div className="mx-auto max-w-350 px-6 lg:px-10">
         <div ref={ref} className={`grid gap-12 lg:grid-cols-12 lg:gap-20 ${shown ? "reveal" : "opacity-0"}`}>
           <div className="lg:col-span-7">
             <p className="mb-6 flex items-center gap-3 text-xs uppercase tracking-[0.3em] text-muted-foreground">
@@ -197,7 +197,7 @@ function DepartmentsPreview() {
   const featured = departments.slice(0, 4);
   return (
     <section className="relative bg-ink py-28 text-cream lg:py-36">
-      <div className="mx-auto max-w-[1400px] px-6 lg:px-10">
+      <div className="mx-auto max-w-350 px-6 lg:px-10">
         <SectionHeader eyebrow="What we do" title="A glimpse of our" script="vibhags." href="/departments" cta="All departments" dark />
         <div ref={ref} className="grid gap-px bg-cream/10 sm:grid-cols-2 lg:grid-cols-4">
           {featured.map((d, i) => {
@@ -206,7 +206,7 @@ function DepartmentsPreview() {
               <div
                 key={d.name}
                 style={{ animationDelay: `${i * 80}ms` }}
-                className={`group relative flex flex-col justify-between bg-ink p-8 transition duration-500 hover:bg-cream/[0.04] ${shown ? "reveal" : "opacity-0"}`}
+                className={`group relative flex flex-col justify-between bg-ink p-8 transition duration-500 hover:bg-cream/4 ${shown ? "reveal" : "opacity-0"}`}
               >
                 {d.image && (
                   <div className="absolute inset-0 opacity-0 transition-opacity duration-700 group-hover:opacity-40">
@@ -236,12 +236,12 @@ function ProjectsPreview() {
   const featured = projects.slice(0, 2);
   return (
     <section className="py-28 lg:py-36">
-      <div className="mx-auto max-w-[1400px] px-6 lg:px-10">
+      <div className="mx-auto max-w-350 px-6 lg:px-10">
         <SectionHeader eyebrow="Our projects" title="Stories from the" script="field." href="/projects" cta="All projects" />
         <div className="grid gap-10 md:grid-cols-2">
           {featured.map((p) => (
             <article key={p.title} className="group cursor-pointer">
-              <div className="relative aspect-[5/4] overflow-hidden bg-secondary">
+              <div className="relative aspect-5/4 overflow-hidden bg-secondary">
                 <img src={p.image} alt={p.title} loading="lazy" className="h-full w-full object-cover transition-transform duration-[1.4s] group-hover:scale-105" />
                 <span className="absolute left-4 top-4 rounded-full bg-cream/95 px-3 py-1 text-xs font-medium uppercase tracking-widest text-ink">
                   {p.tag}
@@ -269,7 +269,7 @@ function EventsPreview() {
   const featured = events.slice(0, 3);
   return (
     <section className="border-y border-border bg-secondary py-24 lg:py-32">
-      <div className="mx-auto max-w-[1400px] px-6 lg:px-10">
+      <div className="mx-auto max-w-350 px-6 lg:px-10">
         <SectionHeader eyebrow="Upcoming" title="Events &" script="sammelans" href="/events" cta="All events" />
         <div className="divide-y divide-border border-y border-border">
           {featured.map((e) => (
@@ -298,7 +298,7 @@ function EventsPreview() {
 function NewsPreview() {
   return (
     <section className="py-28 lg:py-36">
-      <div className="mx-auto max-w-[1400px] px-6 lg:px-10">
+      <div className="mx-auto max-w-350 px-6 lg:px-10">
         <SectionHeader eyebrow="Samachar" title="Latest" script="news" href="/projects" cta="All stories" />
         <div className="grid gap-10 md:grid-cols-3">
           {news.map((n) => (
@@ -330,7 +330,7 @@ function CallToAction() {
             "radial-gradient(1000px 500px at 20% 20%, oklch(0.68 0.18 45), transparent 60%), radial-gradient(800px 400px at 80% 80%, oklch(0.72 0.14 75), transparent 60%)",
         }}
       />
-      <div className="relative mx-auto max-w-[1400px] px-6 text-center lg:px-10">
+      <div className="relative mx-auto max-w-350 px-6 text-center lg:px-10">
         <p className="mb-6 text-xs uppercase tracking-[0.3em] opacity-70">Join the organization</p>
         <h2 className="mx-auto max-w-4xl font-display text-5xl leading-[1.05] tracking-tight md:text-7xl">
           Become part of a <span className="script-accent">movement</span> that has served samaj for five decades.
